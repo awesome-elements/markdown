@@ -1,0 +1,1 @@
+import{p as o,b as r}from"./p-e521f383.js";(()=>{const r=import.meta.url,m={};return""!==r&&(m.resourcesUrl=new URL(".",r).href),o(m)})().then((o=>r([["p-9c7d04b4",[[1,"awesome-markdown",{markdown:[1]}]]]],o)));
