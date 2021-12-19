@@ -6,56 +6,40 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface AwesomeMarkdown {
         /**
-          * The first name
+          * The original markdown text to be parsed and displayed.
          */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "markdown": string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLAwesomeMarkdownElement extends Components.AwesomeMarkdown, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLAwesomeMarkdownElement: {
+        prototype: HTMLAwesomeMarkdownElement;
+        new (): HTMLAwesomeMarkdownElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "awesome-markdown": HTMLAwesomeMarkdownElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface AwesomeMarkdown {
         /**
-          * The first name
+          * The original markdown text to be parsed and displayed.
          */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "markdown"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "awesome-markdown": AwesomeMarkdown;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "awesome-markdown": LocalJSX.AwesomeMarkdown & JSXBase.HTMLAttributes<HTMLAwesomeMarkdownElement>;
         }
     }
 }
