@@ -13,8 +13,17 @@
     <div id="markdown">
       <h1>Markdown</h1>
       <p>The <b>markdown</b> element helps to parse and display Markdown contents.</p>
-      <textarea id="markdown-input" rows="10" style="width: 100%" oninput="updateMarkdownContent()">### Write your markdown here</textarea>
-      <awesome-markdown id="markdown-presenter"></awesome-markdown>
+      <textarea id="markdown-input" rows="10" style="width: 100%" oninput="updateMarkdownContent()"># Write your markdown here</textarea>
+      <awesome-markdown id="markdown-presenter">
+        <template>
+          <link rel="stylesheet" href="./assets/markdown-modest.css">
+          <style>
+            h1 {
+              font-weight: bold;
+            }
+          </style>
+        </template>
+      </awesome-markdown>
       <script>
         function updateMarkdownContent() {
           document.querySelector('#markdown-presenter').markdown = document.querySelector('#markdown-input').value;
