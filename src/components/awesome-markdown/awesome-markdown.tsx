@@ -1,4 +1,4 @@
-import { Component, Host, h, ComponentInterface, Prop, Element, Watch } from '@stencil/core';
+import { Component, Host, h, ComponentInterface, Prop, Element, Watch, Event, EventEmitter } from '@stencil/core';
 import { marked } from 'marked';
 import { observeMutation } from '@awesome-elements/utils';
 
@@ -25,6 +25,13 @@ export class AwesomeMarkdown implements ComponentInterface {
     marked.setOptions(parserOptions);
   }
 
+  /**
+   * Occurs when the markdown is parsed.  
+   * In event detail, _result_ is the parsed HTML string 
+   * and _replaceResult_ is a callback that receives a new HTML string to replace the original result.
+   */
+  @Event() markdownParsed: EventEmitter<{ result: string; replaceResult: (result: string) => void }>;
+
   componentWillLoad() {
     this.parserOptionsChanged(this.parserOptions);
   }
@@ -38,7 +45,7 @@ export class AwesomeMarkdown implements ComponentInterface {
   }
 
   componentDidRender() {
-    this.hostElement.shadowRoot.querySelector('body').innerHTML = marked.parse(this.markdown || '');
+    this.hostElement.shadowRoot.querySelector('body').innerHTML = this.parseMarkdown();
   }
 
   render() {
@@ -57,5 +64,12 @@ export class AwesomeMarkdown implements ComponentInterface {
     const templateContent = templateElement?.content.cloneNode(true);
     this.hostElement.shadowRoot.querySelector('head').innerHTML = '';
     this.hostElement.shadowRoot.querySelector('head').append(templateContent);
+  }
+
+  private parseMarkdown() {
+    let result = marked.parse(this.markdown || '');
+    const replaceResult = (newResult: string) => (result = newResult);
+    this.markdownParsed.emit({ result, replaceResult });
+    return result;
   }
 }

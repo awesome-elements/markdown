@@ -36,6 +36,10 @@ declare namespace LocalJSX {
          */
         "markdown"?: string;
         /**
+          * Occurs when the markdown is parsed.   In event detail, _result_ is the parsed HTML string  and _replaceResult_ is a callback that receives a new HTML string to replace the original result.
+         */
+        "onMarkdownParsed"?: (event: CustomEvent<{ result: string; replaceResult: (result: string) => void }>) => void;
+        /**
           * The options for markdown parser.
          */
         "parserOptions"?: marked.MarkedOptions;
