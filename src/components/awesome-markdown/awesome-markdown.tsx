@@ -1,4 +1,4 @@
-import { Component, Host, h, ComponentInterface, Prop, Element } from '@stencil/core';
+import { Component, Host, h, ComponentInterface, Prop, Element, Watch } from '@stencil/core';
 import { marked } from 'marked';
 import { observeMutation } from '@awesome-elements/utils';
 
@@ -14,6 +14,20 @@ export class AwesomeMarkdown implements ComponentInterface {
    * The original markdown text to be parsed and displayed.
    */
   @Prop() markdown: string;
+
+  /**
+   * The options for markdown parser.
+   */
+  @Prop() parserOptions: marked.MarkedOptions;
+
+  @Watch('parserOptions')
+  parserOptionsChanged(parserOptions: marked.MarkedOptions) {
+    marked.setOptions(parserOptions);
+  }
+
+  componentWillLoad() {
+    this.parserOptionsChanged(this.parserOptions);
+  }
 
   componentDidLoad() {
     observeMutation.call(this, this.hostElement, [this.updateStyle], {

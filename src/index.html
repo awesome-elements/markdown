@@ -9,6 +9,8 @@
     <script nomodule src="./build/awesome-elements.js"></script>
 
     <script type="module" src="https://unpkg.com/@awesome-elements/layout"></script>
+
+    <script src="//unpkg.com/@highlightjs/cdn-assets@11.3.1/highlight.min.js"></script>
   </head>
 
   <body>
@@ -33,13 +35,23 @@
                 color: hsl(0, 0%, 50%);
               }
             </style>
+            <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/default.min.css" />
           </template>
         </awesome-markdown>
         <script>
+          const markdownPresenter = document.querySelector('#markdown-presenter');
           function updateMarkdownContent() {
-            document.querySelector('#markdown-presenter').markdown = document.querySelector('#markdown-input').value;
+            markdownPresenter.markdown = document.querySelector('#markdown-input').value;
           }
           updateMarkdownContent();
+
+          markdownPresenter.parserOptions = {
+            highlight: function (code, lang) {
+              const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+              return hljs.highlight(code, { language }).value;
+            },
+            langPrefix: 'hljs language-',
+          };
         </script>
       </div>
     </awesome-wrap>

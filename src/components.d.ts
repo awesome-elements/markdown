@@ -5,12 +5,17 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { marked } from "marked";
 export namespace Components {
     interface AwesomeMarkdown {
         /**
           * The original markdown text to be parsed and displayed.
          */
         "markdown": string;
+        /**
+          * The options for markdown parser.
+         */
+        "parserOptions": marked.MarkedOptions;
     }
 }
 declare global {
@@ -30,6 +35,10 @@ declare namespace LocalJSX {
           * The original markdown text to be parsed and displayed.
          */
         "markdown"?: string;
+        /**
+          * The options for markdown parser.
+         */
+        "parserOptions"?: marked.MarkedOptions;
     }
     interface IntrinsicElements {
         "awesome-markdown": AwesomeMarkdown;
