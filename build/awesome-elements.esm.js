@@ -1,1 +1,1 @@
-import{p as r,b as o}from"./p-eb6acf07.js";(()=>{const o=import.meta.url,a={};return""!==o&&(a.resourcesUrl=new URL(".",o).href),r(a)})().then((r=>o([["p-68f09419",[[1,"awesome-markdown",{markdown:[1],parserOptions:[16]}]]]],r)));
+import{p as r,b as a}from"./p-eb6acf07.js";(()=>{const a=import.meta.url,o={};return""!==a&&(o.resourcesUrl=new URL(".",a).href),r(o)})().then((r=>a([["p-c6bc9a4d",[[1,"awesome-markdown",{markdown:[1],parserOptions:[16]}]]]],r)));
