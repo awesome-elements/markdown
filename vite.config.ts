@@ -5,7 +5,7 @@ import glob from "tiny-glob";
 export default defineConfig({
   build: {
     lib: {
-      entry: await glob("src/components/**/*.ts"),
+      entry: ["src/index.ts", ...(await glob("src/components/**/*.ts"))],
       formats: ["es"],
     },
   },
