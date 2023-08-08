@@ -1,6 +1,6 @@
 # Introduction
 
-`@awesome-elements/template` is a starter template repository for **Vite** for **Lit** components.
+`@awesome-elements/template` is a starter template repository for web components using **Vite** and **Lit**.
 
 ## Notes
 
