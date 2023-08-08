@@ -1,6 +1,10 @@
 import { LitElement, PropertyValueMap, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+/**
+ * A sample greeting component.
+ * @fires contentChange - Fires when either `greeting` or `name` is changed.
+ */
 @customElement("awesome-greeting")
 export class AwesomeGreetingElement extends LitElement {
   static styles = css`
@@ -9,11 +13,17 @@ export class AwesomeGreetingElement extends LitElement {
     }
   `;
 
+  /**
+   * The greeting phrase.
+   */
   @property()
   greeting = "Hello";
 
+  /**
+   * The name of whom to greeting.
+   */
   @property()
-  name = "Somebody";
+  name = "World";
 
   protected willUpdate(
     changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>

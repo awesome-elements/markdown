@@ -4,16 +4,34 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "analyze": "cem analyze",
+    "analyze:watch": "cem analyze --watch",
+    "storybook": "(npm run analyze:watch &) && storybook dev -p 6006 --no-open",
+    "build-storybook": "npm run analyze && storybook build"
   },
   "dependencies": {
     "lit": "^2.7.6",
     "tiny-glob": "0.2.9"
   },
   "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.8.4",
+    "@storybook/addon-essentials": "~7.0.0",
+    "@storybook/addon-links": "~7.0.0",
+    "@storybook/blocks": "~7.0.0",
+    "@storybook/web-components": "~7.0.0",
+    "@storybook/web-components-vite": "~7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "~7.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
