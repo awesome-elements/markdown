@@ -1,5 +1,6 @@
 {
-  "name": "component-template",
+  "name": "@awesome-elements/template",
+  "description": "Awesome-Elements Template",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lit": "^2.7.6"
+    "lit": "^2.7.6",
+    "tiny-glob": "0.2.9"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
