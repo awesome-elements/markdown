@@ -52,7 +52,7 @@ export class AwesomeMarkdownElement extends LitElement {
   /**
    * The options for marked parser. See [marked](https://marked.js.org/).
    */
-  get parserOptions() {
+  get parserOptions(): MarkedOptions | undefined {
     return this.#parserOptions;
   }
   @property({ type: Object, attribute: "parser-options" }) set parserOptions(
@@ -68,7 +68,7 @@ export class AwesomeMarkdownElement extends LitElement {
   /**
    * The extensions for marked. See [marked](https://marked.js.org/).
    */
-  get extensions() {
+  get extensions(): MarkedExtension[] | undefined {
     return this.#extensions;
   }
   @property({ type: Array, attribute: false }) set extensions(
@@ -85,7 +85,7 @@ export class AwesomeMarkdownElement extends LitElement {
   /**
    * Style sheets to be applied.
    */
-  get styleSheets() {
+  get styleSheets(): (string | CSSStyleSheet)[] | undefined {
     return this.#styleSheets;
   }
   @property({ type: Array, attribute: false }) set styleSheets(
