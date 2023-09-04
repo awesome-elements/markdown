@@ -34,6 +34,10 @@ export class AwesomeMarkdownElement extends LitElement {
    * @internal
    */
   #markedInstance: Marked = new Marked();
+  /**
+   * @internal
+   */
+  #defaultStyleSheets?: CSSStyleSheet[];
 
   /**
    * The original markdown text to be parsed and displayed.
@@ -72,6 +76,48 @@ export class AwesomeMarkdownElement extends LitElement {
   ) {
     this.#extensions = extensions;
     this.#markedInstance = new Marked(...(extensions ?? []));
+  }
+
+  /**
+   * @internal
+   */
+  #styleSheets?: (string | CSSStyleSheet)[];
+  /**
+   * Style sheets to be applied.
+   */
+  get styleSheets() {
+    return this.#styleSheets;
+  }
+  @property({ type: Array, attribute: false }) set styleSheets(
+    styleSheets: (string | CSSStyleSheet)[] | undefined
+  ) {
+    if (!this.#defaultStyleSheets) {
+      this.#defaultStyleSheets = this.shadowRoot?.adoptedStyleSheets ?? [];
+    }
+    this.#styleSheets = styleSheets;
+    if (!this.shadowRoot) {
+      return;
+    }
+    const processedStyleSheets =
+      styleSheets?.map((styleSheetOrString) => {
+        let styleSheet: CSSStyleSheet;
+        if (typeof styleSheetOrString === "string") {
+          styleSheet = new CSSStyleSheet();
+          styleSheet.replaceSync(styleSheetOrString);
+        } else {
+          styleSheet = styleSheetOrString;
+        }
+        return styleSheet;
+      }) ?? [];
+    this.shadowRoot.adoptedStyleSheets = [
+      ...this.#defaultStyleSheets,
+      ...processedStyleSheets,
+    ];
+  }
+
+  protected firstUpdated() {
+    // eslint-disable-next-line no-self-assign
+    this.styleSheets = this.styleSheets;
   }
 
   render() {

@@ -7,12 +7,14 @@ import { MarkdownParsedEventDetail } from "../components/markdown";
 import { Marked, MarkedExtension, MarkedOptions } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
+import hljsCSS from "highlight.js/styles/default.css?inline";
 
 type MyArgs = {
   onMarkdownParsed: (event: CustomEvent<MarkdownParsedEventDetail>) => void;
   markdown?: string;
   parserOptions?: MarkedOptions;
   extensions?: MarkedExtension[];
+  styleSheets?: (string | CSSStyleSheet)[];
 };
 
 export default {
@@ -30,6 +32,7 @@ export default {
       markdown=${args.markdown ?? ""}
       .parserOptions=${args.parserOptions as any}
       .extensions=${args.extensions as any}
+      .styleSheets=${args.styleSheets}
       @markdownParsed=${args.onMarkdownParsed}
     >
       <style>
@@ -61,7 +64,8 @@ export const Headers: StoryObj<MyArgs> = {
 export const Codes: StoryObj<MyArgs> = {
   name: "Codes",
   args: {
-    markdown: "```javascript\nvar x = 1;\nvar y = x + x;\n```",
+    markdown:
+      "```javascript\nvar x = 1;\nvar y = x ** 2;\nconsole.log(x, y);```",
     extensions: [
       markedHighlight({
         langPrefix: "hljs language-",
@@ -71,5 +75,6 @@ export const Codes: StoryObj<MyArgs> = {
         },
       }),
     ],
+    styleSheets: [hljsCSS],
   },
 };
