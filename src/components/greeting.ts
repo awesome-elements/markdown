@@ -1,4 +1,4 @@
-import { LitElement, PropertyValueMap, css, html } from "lit";
+import { LitElement, PropertyValues, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 /**
@@ -25,9 +25,7 @@ export class AwesomeGreetingElement extends LitElement {
   @property()
   name = "World";
 
-  protected willUpdate(
-    changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ) {
+  protected willUpdate(changedProperties: PropertyValues) {
     if (changedProperties.has("greeting") || changedProperties.has("name")) {
       this.dispatchEvent(
         new CustomEvent("contentChange", { detail: changedProperties })
