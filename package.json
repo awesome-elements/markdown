@@ -1,6 +1,6 @@
 {
-  "name": "@awesome-elements/template",
-  "description": "Awesome-Elements Template",
+  "name": "@awesome-elements/markdown",
+  "description": "Awesome-Elements Markdown",
   "private": true,
   "version": "0.0.0",
   "type": "module",
