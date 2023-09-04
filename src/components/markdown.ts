@@ -9,7 +9,7 @@ export type MarkdownParsedEventDetail = {
 };
 
 /**
- * A sample greeting component.
+ * It helps to display markdown contents with ease. Built on top of [marked](https://marked.js.org/).
  * @csspart container - The inner container for markdown content.
  * @fires markdownParsed - Occurs when the markdown is parsed. In event detail, _result_ is the parsed HTML string  and _replaceResult_ is a callback that receives a new HTML string to replace the original result.
  */
