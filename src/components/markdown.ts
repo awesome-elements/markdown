@@ -33,7 +33,7 @@ export class AwesomeMarkdownElement extends LitElement {
   /**
    * @internal
    */
-  #markedInstance?: Marked;
+  #markedInstance: Marked = new Marked();
 
   /**
    * The original markdown text to be parsed and displayed.
