@@ -28,21 +28,23 @@ export default {
     onMarkdownParsed: { action: "markdownParsed" },
   },
   render: (args) =>
-    html`<awesome-markdown
-      markdown=${args.markdown ?? ""}
-      .parserOptions=${args.parserOptions as any}
-      .extensions=${args.extensions as any}
-      .styleSheets=${args.styleSheets}
-      @markdownParsed=${args.onMarkdownParsed}
-    >
+    html`
       <style>
-        ::part(container) {
-          font-family: arial;
+        #markdown::part(container) {
+          font-family: Arial, Helvetica, sans-serif;
           background: hsl(0, 0%, 98%);
           padding: 1rem;
         }
       </style>
-    </awesome-markdown>`,
+      <awesome-markdown
+        id="markdown"
+        markdown=${args.markdown ?? ""}
+        .parserOptions=${args.parserOptions as any}
+        .extensions=${args.extensions as any}
+        .styleSheets=${args.styleSheets}
+        @markdownParsed=${args.onMarkdownParsed}
+      ></awesome-markdown>
+    `,
 } satisfies Meta<MyArgs>;
 
 new Marked();
