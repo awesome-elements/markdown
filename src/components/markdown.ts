@@ -76,12 +76,12 @@ export class AwesomeMarkdownElement extends LitElement {
 
   render() {
     return html`
-      <div part="container" .innerHTML=${until(this.#parseMarkdown())}></div>
+      <div part="container" .innerHTML=${until(this.#parseMarkdown(), '')}></div>
     `;
   }
 
   #parseMarkdown() {
-    let result = this.#markedInstance?.parse(this.markdown || "");
+    let result = this.#markedInstance?.parse(this.markdown ?? "");
     const replaceResult = (newResult: string) => (result = newResult);
     this.dispatchEvent(
       new CustomEvent("markdownParsed", {
