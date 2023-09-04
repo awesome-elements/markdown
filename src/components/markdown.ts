@@ -76,7 +76,10 @@ export class AwesomeMarkdownElement extends LitElement {
 
   render() {
     return html`
-      <div part="container" .innerHTML=${until(this.#parseMarkdown(), '')}></div>
+      <div
+        part="container"
+        .innerHTML=${until(this.#parseMarkdown() ?? "")}
+      ></div>
     `;
   }
 
