@@ -26,6 +26,7 @@ export default {
   },
   argTypes: {
     onMarkdownParsed: { action: "markdownParsed" },
+    markdown: { control: "text" },
   },
   render: (args) =>
     html`
