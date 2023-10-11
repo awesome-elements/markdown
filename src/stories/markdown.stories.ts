@@ -8,6 +8,7 @@ import { Marked, MarkedExtension, MarkedOptions } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import hljsCSS from "highlight.js/styles/github.css?inline";
+import modestCSS from "../assets/markdown-modest.css?inline";
 
 type MyArgs = {
   onMarkdownParsed: (event: CustomEvent<MarkdownParsedEventDetail>) => void;
@@ -28,17 +29,48 @@ export default {
     onMarkdownParsed: { action: "markdownParsed" },
     markdown: { control: "text" },
   },
+  render: (args) => html`
+    <awesome-markdown
+      markdown=${args.markdown ?? ""}
+      .parserOptions=${args.parserOptions as any}
+      .extensions=${args.extensions as any}
+      .styleSheets=${args.styleSheets}
+      @markdownParsed=${args.onMarkdownParsed}
+    ></awesome-markdown>
+  `,
+} satisfies Meta<MyArgs>;
+
+new Marked();
+
+export const Default: StoryObj<MyArgs> = {
+  name: "Default",
+  args: {
+    markdown: "# Header 1\n## Header 2\n### Header 3\nNormal content...",
+  },
+};
+
+export const AdoptStyleSheet: StoryObj<MyArgs> = {
+  name: "Adpot style sheet",
+  args: {
+    markdown: "# Header 1\n## Header 2\n### Header 3\nNormal content...",
+    styleSheets: [modestCSS],
+  },
+};
+
+export const ApplyStyleUsingPart: StoryObj<MyArgs> = {
+  name: "Apply styles using ::part",
+  args: {
+    markdown: "# Header 1\n## Header 2\n### Header 3\nNormal content...",
+  },
   render: (args) =>
     html`
       <style>
-        #markdown::part(container) {
-          font-family: Arial, Helvetica, sans-serif;
-          background: hsl(0, 0%, 98%);
-          padding: 1rem;
+        .my-style::part(container) {
+          color: blue;
         }
       </style>
       <awesome-markdown
-        id="markdown"
+        class="my-style"
         markdown=${args.markdown ?? ""}
         .parserOptions=${args.parserOptions as any}
         .extensions=${args.extensions as any}
@@ -46,22 +78,6 @@ export default {
         @markdownParsed=${args.onMarkdownParsed}
       ></awesome-markdown>
     `,
-} satisfies Meta<MyArgs>;
-
-new Marked();
-
-export const PlainText: StoryObj<MyArgs> = {
-  name: "Plain Text",
-  args: {
-    markdown: "Hello World!",
-  },
-};
-
-export const Headers: StoryObj<MyArgs> = {
-  name: "Headers",
-  args: {
-    markdown: "# Header 1\n## Header 2\n### Header 3\nNormal content...",
-  },
 };
 
 export const Codes: StoryObj<MyArgs> = {
