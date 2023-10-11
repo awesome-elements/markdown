@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/awesome-elements/markdown.git"
   },
+  "homepage": "https://awesome-elements.github.io/markdown/",
   "main": "dist/index.js",
   "files": [
     "dist",
