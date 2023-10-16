@@ -1,7 +1,7 @@
 {
   "name": "@awesome-elements/markdown",
   "description": "Awesome-Elements Markdown",
-  "version": "0.2.0-rc.1",
+  "version": "0.2.0",
   "type": "module",
   "repository": {
     "type": "git",
